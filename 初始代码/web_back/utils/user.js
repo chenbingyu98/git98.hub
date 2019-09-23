@@ -18,6 +18,16 @@ var user = {
          }
      );
     },
+    
+    // $.ajax({
+    //     url: user_login,
+    //     type: 'post',
+    //     data:{user_name: userName, password: password},
+    //     success: function(res){
+    //        callBack(res);
+    //     }
+    // })
+
 
     
     /**
