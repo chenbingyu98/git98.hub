@@ -28,8 +28,8 @@
                         <th class="text-center" width="100">操作</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
+                <tbody id="tableContent">
+                    <!-- <tr>
                         <td>未分类</td>
                         <td>uncategorized</td>
                         <td class="text-center">
@@ -67,7 +67,7 @@
                                 class="btn btn-info btn-xs">编辑</a>
                             <a href="javascript:deleteTr( 4 );" class="btn btn-danger btn-xs">删除</a>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
                 <tfoot>
                     <tr>
@@ -129,6 +129,46 @@
                 $('#addModal').modal('show');
               }
           })      
+      </script>
+      <script src="./utils/config.js"></script>
+      <script src="./utils/category.js"></script>
+      <script src="./js/template-web.js"></script>
+      <script id="tmp" type="text/html">
+      {{each data item}}
+      <tr>
+        <td>{{item.name}}</td>
+        <td>{{item.slug}}</td>
+        <td class="text-center">
+            <a data-id="{{item.id}}" data-name="{{item.name}}" data-slug="item.slug" href="javascript:;" 
+                class="btn btn-info btn-xs">编辑</a>
+            <a href="javascript:deleteTr{{item-id}};" class="btn btn-danger btn-xs">删除</a>
+        </td>
+    </tr>
+      {{/each}}
+      </script>
+
+      <script>
+
+        //   显示获取
+      function doQuery(){
+          category.show(function(res){
+            console.log(res);
+            if(res.code === 200){
+                //把res.data转成表格中的行
+                //1.循环+字符串拼接
+                //2.模板引擎
+                var htmlstr = template('tmp',res);
+                $('#tableContent').html(htmlstr);
+                console.log(htmlstr);
+            }
+          });
+      }
+      doQuery();
+      
+        
+      //     添加
+      
+      
       </script>
 
 </body>
